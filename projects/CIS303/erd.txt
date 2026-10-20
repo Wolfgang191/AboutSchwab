@@ -1,0 +1,71 @@
+Publisher
+PublisherID INT Primary Key
+Date DATE Not Null
+Format VARCHAR(20) Not Null
+Collection
+CollectionID INT Primary Key
+Amount INT Not Null
+Status VARCHAR(20) Not Null
+Issue VARCHAR(20) Not Null
+Overview
+OverviewID INT Primary Key
+Issue VARCHAR(20) Not Null
+Artist VARCHAR(50) Not Null
+Type VARCHAR(20) Not Null
+CollectionID INT Foreign Key
+PublisherID INT Foreign Key
+Price
+PriceID INT Primary Key
+Cover DECIMAL(5,2) Not Null
+Format VARCHAR(20) Not Null
+OverviewID INT Foreign Key
+
+
+Commands
+CREATE TABLE Publisher (
+   PublisherID INT PRIMARY KEY,
+   Date DATE NOT NULL,
+   Format VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE Collection (
+   CollectionID INT PRIMARY KEY,
+   Amount INT NOT NULL,
+   Status VARCHAR(20) NOT NULL,
+   Issue VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE Overview (
+   OverviewID INT PRIMARY KEY,
+   Issue VARCHAR(20) NOT NULL,
+   Artist VARCHAR(50) NOT NULL,
+   Type VARCHAR(20) NOT NULL,
+   CollectionID INT,
+   PublisherID INT,
+   FOREIGN KEY (CollectionID) REFERENCES Collection(CollectionID),
+   FOREIGN KEY (PublisherID) REFERENCES Publisher(PublisherID)
+);
+
+CREATE TABLE Price (
+   PriceID INT PRIMARY KEY,
+   Cover DECIMAL(5,2) NOT NULL,
+   Format VARCHAR(20) NOT NULL,
+   OverviewID INT,
+   FOREIGN KEY (OverviewID) REFERENCES Overview(OverviewID)
+);
+
+CREATE TABLE ComicCollections(
+    ComicID INT NOT NULL,
+    CollectionID INT NOT NULL,
+
+    PRIMARY KEY (ComicID, CollectionID),
+
+    FOREIGN KEY (ComicID) REFERENCES Comic(ComicID),
+    FOREIGN KEY (CollectionID) REFERENCES Collection(CollectionID)
+);
+
+Relationships
+One publisher can have many overview items, but each overview only has one publisher
+One collection can have many overview items, but each overview is in one collection
+Each overview has one price, and each price belongs to one overview (some comics can have multiple prices based on the cover, but for simplicity I will leave it like this for now)
+

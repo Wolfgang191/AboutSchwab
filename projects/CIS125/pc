@@ -1,0 +1,66 @@
+// Final Project Workspace
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner scnr = new Scanner(System.in);
+
+        String tarSize = "";
+        //int input;
+
+        // int[] target = new int[];
+        int[] chars = {0, 1, 2, 3, 4, 5, 6, 7 , 8, 9};
+        int[] guess = {};
+
+        Wellcome(scnr);
+        //Guessing(target, chars, guess);
+        
+    //System.out.println("Final Project Workspace");
+
+
+
+    } // end main method
+
+
+    public static void Wellcome(Scanner scnr) {
+        System.out.println("Enter the length of your chosen password to be cracked: ");
+  
+        int length = scnr.nextInt();
+        int[] target = new int[length];
+
+        System.out.println("Enter your chosen password to be cracked");
+
+        String passInput = scnr.nextLine();
+
+        for (int i = 0; i < 3; i++) {
+            target[i] = Character.getNumericValue(passInput.charAt(i));
+        }
+
+        // while (target.length <= 0) {
+        //     target[0] = scnr.nextInt();
+        // } 
+
+        //debugging
+        System.out.println("step 1");
+
+        scnr.close();
+
+    } // end Wellcome
+
+
+    public static void Guessing(int[] target, int[] chars, int[] guess) {
+        
+        for (int i = 0; i < target.length; i++) {
+            for (int j = 0; j < chars.length; j++) {
+                if (chars[j] == target[i]) {
+                    guess[i] = j;
+                    System.out.println(guess[i]);
+                }
+            }
+        }
+    } // end Guessing
+
+
+} // end Main class
