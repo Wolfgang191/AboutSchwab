@@ -1,0 +1,614 @@
+
+
+// JAM GAME
+// Zach Schwab
+// 3/27/26
+// 2026 copyright
+
+
+
+
+
+let es = [];
+let spawns = [];
+
+let dogFrames = [];
+let frameIndex = 0;
+
+let booms = [];
+
+
+let scene = 0; 
+
+
+let velocityX = 0;
+let velocityY = 0
+let acceleration = 0.5;  
+let friction = 0.2;      
+let maxSpeed = 8;      
+
+
+let goatClipPlayed = false; 
+
+let lastTalkTime = 0; // last time we showed the talk image
+let talkDuration = 2500; // how long the talk image stays on screen (ms)
+let showTalk = false;
+let talkSoundPlayed = false; 
+let lastTalkIndex = -1;
+
+let talkSounds = [];
+
+let introPlayed = false;
+
+// var sprite_sheet;
+// var dog_animation;
+
+
+
+function preload() {
+	PixelComicSans = loadFont('PixelComicSans-Regular.otf');
+	
+	car = loadImage('assets/car1.png');
+	car2 = loadImage('assets/car_convertible.png');
+	hydrant = loadImage('assets/hydrant.png');
+	trashBag = loadImage('assets/trash_bag.png');
+	trashBag2 = loadImage('assets/trash_bag_2.png');
+	trashCan = loadImage('assets/trash_can.png');
+	trashCan2 = loadImage('assets/trash_can_2.png');
+	trashHeap = loadImage('assets/trash_heap.png');
+	shopVac = loadImage('assets/shop_vac.png');
+	standupVac = loadImage('assets/standup_vac.png');
+	dogFrames[0] = loadImage('assets/dog_spritesheet.png');
+	dogFrames[1] = loadImage('assets/dog2.png');
+	boom = loadImage('assets/boomMS.png');
+	treat = loadImage('assets/treat.png');
+
+	music = loadSound('audio/Asher Jackson - jam v1 2026-03-27 22_32.m4a');
+	eat = loadSound('audio/treat.wav');
+	pedaling = loadSound('audio/bicycle.wav');
+	GOATren = loadSound('audio/Dog_jam.wav');
+
+	title = loadImage('assets/title_page_v2.jpg');
+	street = loadImage('assets/street_background.png');
+	comicFull = loadImage('assets/intro_comic.png');
+	talk = loadImage('assets/biscuit_talking.png');
+
+	// talkSounds[0] = loadSound('audio/naynaynay.mp3');
+	// talkSounds[1] = loadSound('audio/biscuitofcourse.mp3');
+	talkSounds[0] = loadSound('audio/dieyoubastard (1).mp3');
+	// talkSounds[3] = loadSound('audio/hourofdarkness.mp3');
+	talkSounds[1] = loadSound('audio/seeyouinhell.mp3');
+
+	introTalk = loadSound('audio/intro_dialogue.mp3');
+	// dog_animation = loadAnimation('assets/dog_spritesheet.png', 'assets/dog2.png');
+}
+
+
+
+function setup() {
+	createCanvas(windowWidth, windowHeight);
+
+	rectMode(CENTER);
+	imageMode(CENTER);
+	textAlign(CENTER);
+	textFont(PixelComicSans);
+
+	// customs
+	sizez = (width + height); 
+	// sizez = min(width, height);
+	percX = width / 100;
+	percY = height / 100;
+	perc = 0;
+
+	reset();
+} // end setup
+
+
+
+function reset() {
+	death = false;
+	scene = 0;
+
+
+	playerSpeed = 3;
+	playerIdleSpeed = playerSpeed / 2;
+	camX = 0; 
+	camY = 0; 
+	gameStart = false;
+	lives = 3;
+	playerX = width / 2;
+	playerY = height / 2;
+	playerSize = sizez * 0.1;
+	cam = playerX * 0.8; 
+	speedLimit = 1;
+	score = 0;
+	textTime = 0;
+	playerScore = 0;
+
+	zoom = 0.8; // smaller = more zoomed out
+
+	music.setVolume(0.05); // bg
+	eat.setVolume(0.5); 
+	pedaling.setVolume(0.45);
+	GOATren.setVolume(1.5);
+	introTalk.setVolume(1.5);
+
+	if (!music.isPlaying()) {
+        music.loop(); 
+    }
+
+	// dogFrame = dog1;
+} // reset
+
+
+
+
+
+function draw() {
+
+	console.log(typeof loadSpriteSheet);
+
+	switch(scene) {
+		case 0:
+			StartScene();
+			break;
+
+		case 0.5:
+			background('white');
+			image(comicFull, width / 2, height * 0.4, sizez * 0.3, sizez * 0.275);
+			text("PRESS SPACE", width / 2, height * 0.98);
+			break;
+		case 1:
+			background(88);
+
+			
+
+			camX = playerX - width / 2;
+    		camY = playerY - height / 2;
+
+    		push();
+			translate(width / 2, height / 2); // center screen
+			scale(zoom);
+			translate(-playerX, -playerY); // follow player
+
+
+			road();
+
+			// if (frameCount % 60 === 0) { 
+				itemSpawn();
+			// }
+			// image(trashHeap, width / 2, height / 2);
+
+			eSpawn();
+
+			move();
+
+			// for (let spawn of spawns) {
+			// 	spawn.display();
+			// 	spawn.update();
+			// }
+
+			print(spawns.length);
+
+			for (let i = spawns.length - 1; i >= 0; i--) {
+				spawns[i].update();
+				spawns[i].display();
+
+			// delete when off left side
+				if (spawns[i].x < camX - 500) {
+					spawns.splice(i, 1);
+				}
+			}
+
+
+
+
+			
+			// for (let i = es.length - 1; i >= 0; i--) {
+    		// 	es[i].update();
+    		// 	es[i].display();
+
+    		// 	if (es[i].hitsPlayer()) {
+        	// 		console.log("HIT");
+
+    
+        	// 	lives--;
+
+        	// 	es.splice(i, 1);
+    		// 	}
+			// }
+
+	
+			fill('white');
+			// animation(dog_animation, playerX, playerY);
+
+			// switch frame every 10 frames
+			frameIndex = floor(frameCount / 10) % 2;
+
+			
+			// draw current frame
+			image(dogFrames[frameIndex], playerX, playerY, sizez * 0.125, sizez * 0.08);
+			// rect(playerX, playerY, playerSize, playerSize); // player
+
+			// for (let b of booms) {
+    		// 	image(treat, b.x, b.y);
+			// }
+			for (let b of booms) {
+    			image(treat, b.x, b.y, b.size, b.size);
+
+				for (let i = booms.length - 1; i >= 0; i--) {
+    				let b = booms[i];
+
+    				image(treat, b.x, b.y, b.size, b.size);
+
+    				// Check if Biscuits ate the treat
+    				let d = dist(playerX, playerY, b.x, b.y);
+    				if (d < b.size) {
+						if (!eat.isPlaying()) {
+        					eat.play(); 
+							// image(talk, width * 0.8, height * 0.9, sizez * 0.2);
+    					}
+        				score += 1;          // Give points
+        				booms.splice(i, 1);   // Remove the treat
+        				continue;  
+						           // Skip the rest
+    				} 
+
+    				// delete when off left side
+    				if (b.x < camX - 200) {
+        				booms.splice(i, 1);
+    				}
+				}
+			}
+
+
+
+
+
+
+			pop();
+
+			drawOverlay();
+
+			dogTalk();
+
+
+			break;
+	} // end switch scene
+} // end draw
+
+
+
+
+// function move() {
+// 	if (gameStart == true) {
+// 		// up
+// 		if ((keyIsDown(87) || keyIsDown(38)) && playerY > 0)	{
+// 			playerY -= playerSpeed;
+// 		}  
+// 		// down
+// 		if ((keyIsDown(83) || keyIsDown(40)) && playerY < height)	{
+// 			playerY += playerSpeed
+// 		}		
+// 		// left
+// 		if ((keyIsDown(65) || keyIsDown(37)) && playerX > 0)	{
+// 			playerX -= playerSpeed
+// 		}
+// 		// right
+// 		if (keyIsDown(68) || keyIsDown(39))	{ //  && playerX < width
+// 			playerX += playerSpeed
+// 		}
+// 	} // end if
+// } // end move
+
+function move() {
+    if (gameStart == true) {
+        let isPedalingX = false;
+        let isPedalingY = false;
+
+        // Y-Axis Acceleration 
+
+        if (keyIsDown(87)  || keyIsDown(38)) { // Up (W or Arrow Up)
+            velocityY -= acceleration;
+            isPedalingY = true;
+        }
+        if (keyIsDown(83)  || keyIsDown(40)) { // Down (S or Arrow Down)
+            velocityY += acceleration;
+            isPedalingY = true;
+        }
+
+        // X-Axis Acceleration
+
+        if (keyIsDown(65)  || keyIsDown(37)) { // Left (A or Arrow Left)
+            velocityX -= acceleration;
+            isPedalingX = true;
+        }
+        if (keyIsDown(68)  || keyIsDown(39)) { // Right (D or Arrow Right)
+            velocityX += acceleration;
+            isPedalingX = true;
+        }
+
+//        Apply Friction 
+// (Coasting) 
+        if (!isPedalingX) {
+            if (velocityX > 0) {
+                // (Math.max prevents the bike from accidentally sliding backwards, right?)
+                velocityX = Math.max(0, velocityX - friction); 
+            } else if (velocityX < 0) {
+                velocityX = Math.min(0, velocityX + friction);
+            }
+        }
+
+        if (!isPedalingY) {
+            if (velocityY > 0) {
+                velocityY = Math.max(0, velocityY - friction);
+            } else if (velocityY < 0) {
+                velocityY = Math.min(0, velocityY + friction);
+            }
+        }
+
+        // Speed Caps & Movement
+
+        // (Constrain keeps the velocity from exceeding your maxSpeed)
+        velocityX = constrain(velocityX, -maxSpeed, maxSpeed);
+        velocityY = constrain(velocityY, -maxSpeed, maxSpeed);
+
+        // (Apply final velocity to position)
+        playerX += velocityX;
+        playerY += velocityY;
+
+        // Screen Boundaries
+
+        // (Prevents sliding off the map even if velocity pushes them past the edge)
+        playerX = max(0, playerX); 
+        playerY = constrain(playerY, 0, height);
+
+		if (isPedalingX || isPedalingY) {
+    		if (!pedaling.isPlaying()) {
+        		pedaling.loop();   // smooth continuous sound
+    		}
+			} else {
+    			if (pedaling.isPlaying()) {
+        			pedaling.stop();   // stop when not moving
+    			}
+			}
+
+    	} 
+}
+
+
+
+
+function drawUI() {
+	textSize(percX * 5);
+
+} // end drawUI
+
+
+
+function drawOverlay() {
+	// fill('green');
+	// rect(width * 0.2, height * 0.85, sizez * 0.075, sizez * 0.02);
+
+	fill('white');
+	stroke('black');
+	text("Treats: " + score, width * 0.2, height * 0.15);
+} // end drawOverlay
+
+
+
+function StartScene() {
+	background('white');
+	image(title, width / 2, height / 2, sizez * 0.4, sizez * 0.35);
+	textSize(percX * 2.75);
+	// text("BARKPOCALYPSE", width / 2, height / 2);
+
+	textSize(percX * 3);
+	stroke('black');
+	strokeWeight(sizez * 0.008);
+	fill('white');
+	text("PRESS ENTER", width / 2, height * 0.7);
+}
+
+
+
+function keyPressed() {
+	if (key === 'f') {
+		let fs = fullscreen();
+		fullscreen(!fs);
+	}
+	if (scene == 0) {
+		scene = 0.5;
+		// gameStart = true;
+	}
+	if (scene == 0.5 && keyCode == '32') {
+		scene = 1;
+		gameStart = true;
+	}
+} // end keyPressed
+
+
+
+function eSpawn() {
+
+
+
+	for (let i = 0; i < 5; i++) {
+		// if (frameCount % 60 === 0) {  // once per second
+			es.push(new E(random(0, height), random(2, 5)));
+		// }
+		es[i].display();
+  		es[i].update();	
+
+		if (es[i].hitsPlayer()) {
+				// image(boom, playerX, playerY, sizez * 0.3, sizez * 0.3);
+				booms.push({ x: es[i].x, y: es[i].y, size: sizez * 0.05 });
+				console.log("HIT");
+				lives--;
+				es.splice(i, 1);
+			}
+		} 	// end of for loop
+}
+
+
+
+
+function itemSpawn() {
+	if (spawns.length === 0) {
+		spawns.push(new Spawn(camX + width + 500, height * 1.15));
+	}
+}
+
+
+
+// function road() {
+// 	fill('yellow');
+	
+// 	let spacing = sizez * 0.1;
+
+// 	let startX = Math.floor(camX / spacing) * spacing - width;   
+// 	let endX   = camX + width * 2;                               
+
+// 	for (let x = startX; x < endX; x += spacing) {
+// 		rect(x, height / 2, sizez * 0.04, sizez * 0.02);
+// 	}	
+
+// 	let roadY = height / 2;
+// 	let roadHeight = sizez * 0.2;
+
+// 	fill(50, 150, 50);
+
+// 	// top
+// 	rect(width / 2, roadY - roadHeight - height / 2, width * 3, height);
+// 	// bottem
+// 	rect(width / 2, roadY + roadHeight + height / 2, width * 3, height);
+	
+			
+// 			// for (let x = 0; x < width; x += sizez * 0.06) {
+//     		// 	rect(x, height / 2, sizez * 0.04, sizez * 0.02);
+// 			// }
+
+			
+
+// 	// rect(width / 2,height / 2, sizez * 0.04, sizez * 0.02);
+
+// 	image(car, width * -0.1, height / 2, sizez * 0.135, sizez * 0.135);
+// 	image(trashCan2, width * -0.1, height * 0.25, sizez * 0.135, sizez * 0.135);
+// 	image(car2, width * -0.125, height * 0.05, sizez * 0.135, sizez * 0.135);
+// 	image(trashHeap, width * -0.115, height * 0.73, sizez * 0.2, sizez * 0.2);
+// 	image(trashCan, width * -0.1, height * 0.85, sizez * 0.135, sizez * 0.135);
+// 	image(trashCan, width * -0.09, height * 0.925, sizez * 0.135, sizez * 0.135);
+// 	image(trashBag, width * -0.15, height * 0.9, sizez * 0.18, sizez * 0.18);
+// 	image(trashCan2, width * -0.115, height * 1, sizez * 0.135, sizez * 0.135);
+// 	image(trashBag2, width * -0.15, height * 0.215, sizez * 0.18, sizez * 0.18);
+
+
+
+
+
+// }
+
+
+function road() {
+	background('white');
+
+    let imgW = street.width;
+    let imgH = street.height;
+
+    let scaleFactor = sizez * 0.00025; 
+    let w = imgW * scaleFactor;
+    let h = imgH * scaleFactor;
+
+    let startX = Math.floor(camX / w) * w - w * 2;
+    let endX = camX + width * 2;
+
+    for (let x = startX; x < endX; x += w) {
+        image(street, x + w / 2, height / 2, w, h);
+    }
+
+	image(car, width * -0.17, height / 2, sizez * 0.18, sizez * 0.115);
+	image(trashCan2, width * -0.15, height * 0.25, sizez * 0.135, sizez * 0.135);
+	image(car2, width * -0.18, height * 0.05, sizez * 0.2, sizez * 0.135);
+	image(trashHeap, width * -0.18, height * 0.73, sizez * 0.2, sizez * 0.2);
+	// image(trashCan, width * -0.1, height * 0.85, sizez * 0.135, sizez * 0.135);
+	// image(trashCan, width * -0.09, height * 0.925, sizez * 0.135, sizez * 0.135);
+	image(trashBag, width * -0.2, height * 0.9, sizez * 0.18, sizez * 0.18);
+	image(trashCan2, width * -0.16, height * 1, sizez * 0.135, sizez * 0.135);
+	image(trashBag2, width * -0.15, height * 0.215, sizez * 0.18, sizez * 0.18);
+
+}
+
+
+// function dogTalk() {
+// 	            // Handle talk timer
+//             let currentTime = millis();
+//             if (showTalk && currentTime - lastTalkTime > talkDuration) {
+//                 showTalk = false;
+//             }
+
+//             // Every 20 seconds, show talk again
+//             if (currentTime - lastTalkTime > 20000) {
+//                 showTalk = true;
+//                 lastTalkTime = currentTime;
+//             }
+
+//             // Draw talk image on HUD layer if active
+//             if (showTalk) {
+//                 image(talk, width * 0.8, height * 0.75, sizez * 0.125, sizez * 0.125);
+// 					talk1.play();
+//     		}
+// }
+
+
+function dogTalk() {
+
+				if (!introTalk.isPlaying() && !introPlayed) {
+       		 		introTalk.play(); 
+					introPlayed = true;
+    			}
+
+				if (introTalk.isPlaying()) {
+					image(talk, width * 0.8, height * 0.75, sizez * 0.25, sizez * 0.25);
+					text(". . .",  width * 0.815, height * 0.925)
+				}
+
+
+    let currentTime = millis();
+
+    // Hide talk after duration
+    if (showTalk && currentTime - lastTalkTime > talkDuration) {
+        showTalk = false;
+        talkSoundPlayed = false; // reset sound for next talk
+    }
+
+    // Show talk every 20 seconds
+    if (currentTime - lastTalkTime > 25000) {
+        showTalk = true;
+        lastTalkTime = currentTime;
+    }
+
+    // Draw talk image and play sound (once)
+    if (showTalk) {
+        image(talk, width * 0.8, height * 0.75, sizez * 0.25, sizez * 0.25);
+		text(". . .",  width * 0.815, height * 0.925);
+
+
+        // if (!talkSoundPlayed) {
+        //     // pick a random talk sound
+        //     let idx = floor(random(talkSounds.length));
+		// 	// lastPlayed = idx
+        //     talkSounds[idx].play();
+        //     talkSoundPlayed = true;
+        // }
+			if (!talkSoundPlayed) {
+            	let idx;
+            	do {
+                	idx = floor(random(talkSounds.length));
+            	} while (idx === lastTalkIndex && talkSounds.length > 1); // prevent immediate repeat
+
+            	talkSounds[idx].play();
+            	lastTalkIndex = idx;
+            	talkSoundPlayed = true;
+        }
+    }
+}
