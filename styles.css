@@ -1,0 +1,573 @@
+
+
+
+
+
+
+
+
+
+
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+    background-color: #FFFFF0;
+}
+
+
+.navBar a {
+    color: white;
+}
+
+
+.navBar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* background-color: #333333; */
+    background-color: #FFB6C1;
+
+    border-bottom: 0.25em solid #000000;
+    /* border-radius: 2em; */
+
+    display: flex;
+    justify-content: center; 
+
+
+}
+
+
+.navBar ul li a {
+    display: flex;
+    flex-wrap: wrap;
+    color: #000000;
+    text-align: center;
+    padding: 24px 32px;  
+    font-size: 1.3rem;   
+    text-decoration: none;
+    font-weight: 800;
+}
+
+
+.navBar ul li a:hover {
+    /* background-color: #7cc576; */
+    /* background-color: #111111; */
+    background-color: #E2DFD2;
+    border-radius: 2rem;
+}
+
+
+footer {
+    text-align: center;
+    /* padding-top: 0.5em; */
+}
+
+
+/* .logo {
+    justify-content: center;
+    margin: 0 auto;
+    display: block;
+    max-width: 1%;
+    height: auto;
+    padding-top: 4em;
+    text-align: center;
+} */
+
+
+/* .logo {
+    text-align: center;
+    padding-top: 4em;
+    padding-bottom: 1em;
+}
+
+.logo a {
+    display: inline-block;
+}
+
+.logo img {
+    width: 25%;
+    height: auto;
+} */
+
+
+header {
+    text-align: center;
+    font-size: 2.5rem;
+    padding: 1em;
+    /* font-family: "Bungee", sans-serif;
+    font-weight: 400;
+    font-style: normal; */
+}
+
+
+h1 {
+    text-align: center;
+    font-size: 1.75rem;
+    padding: 0.5em;
+    /* font-style: bold; */
+}
+
+
+h2 {
+    text-align: center;
+    font-size: 1.25rem;
+    padding: 0.25em;
+    /* font-style: bold; */
+}
+
+h3 {
+    text-align: center;
+    font-size: 1.25rem;
+    padding: 0.25em;
+    font-style: bold;
+}
+
+
+button {
+    background-color: lightblue;
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    display: block;
+    margin: 20px auto 60px;
+    margin-top: 2.5em;
+}
+
+
+p {
+    text-align: center;
+    font-size: 1.25rem;
+    /* padding: 0.em; */
+    padding-top: 0.1em;
+    padding-left: 5em;
+    padding-right: 5em;
+    padding-bottom: 0.1em;
+    /* margin: 5em; */
+}
+
+
+.bungee-regular {
+  font-family: "Bungee", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.bubblegum-sans-regular {
+  font-family: "Bubblegum Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.top {
+    float: none;
+    display: block;
+    margin: 0 auto 20px auto;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    max-width: 100%;
+}
+
+.card {
+    max-width: 40%;
+    /* max-height: 90vh; */
+    height: auto;
+    margin: 0 auto 2rem auto;
+    margin: 2.5em auto 3em auto;
+} 
+
+
+.card-body {
+    padding: 0;
+}
+
+/* .card-body p {
+    padding: 0;
+    margin: 0;
+} */
+
+
+.card a {
+    margin-bottom: 0.15em;
+}
+
+
+.card h3 {
+    margin-top: 0.15em;
+    margin-bottom: 0.15em;
+}
+
+
+
+.card img {
+    max-width: 90%;
+    min-width: 70%;
+    min-height: 35%;
+    max-height: 60%;
+    /* height: auto; */
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    border-radius: 0;
+    padding-top: 0;
+} 
+
+
+img {
+    max-width: 50%;
+    min-width: 50%;
+    max-height: 30%;
+    /* height: auto; */
+    display: block;
+    margin: 0 auto;
+    border-radius: 15px;
+    margin-bottom: 2.5em;
+}
+
+
+
+.carousel {
+    max-width: 50%;
+    margin: 0 auto;
+    display: block;
+}
+
+
+    /* .carousel img {
+        width: 100%;
+    } */
+
+.carousel img {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+
+.destinations {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+
+.card {
+    background-color: #E2DFD2;
+}
+
+
+.alert {
+    text-align: center;
+    max-width: 20%;
+    margin: 0 auto;
+    background-color: #E2DFD2;
+    border-radius: 15px;
+    padding: 0.25em;
+}
+
+
+form {		
+    display:  flex;
+	flex-direction:    column; 
+	background-color: #7cc576;
+	width:70%;
+	padding:0.5em;
+	margin:1.5em auto;
+	border:thin solid black;
+	border-radius:10px;
+	clear: both;
+}
+
+
+.flex-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.3em;
+}
+
+
+.flex-form label {
+    text-align: left;
+    margin-top: 0.5em;
+    margin-right: 0.5em;
+    width: 80%;
+}
+
+
+.flex-form input, select {
+    width: 80%;
+}
+  		
+
+/* , textarea */
+/* .flex-form input, select {
+    flex:   2;
+} */
+  					
+  					
+.flex-radio  {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 1em;
+    /* justify-content: space-around;
+    margin-left:1.8em;
+    margin-top:1.2em;
+    margin-bottom:1.2em; */
+}
+  				
+
+.flex-radio  label {
+    margin-right:1.8em;
+}
+	
+    
+.flex-buttons  {
+    display:flex;
+    justify-content: center;
+}
+
+
+.btn-primary {
+    margin: 0.5em;
+    border-radius: 5px;
+}
+	 
+ 
+textarea {
+    /* height: 80em !important; */
+    min-width: 60%;
+    max-width: 80%;
+    min-height: 40%;
+    max-height: 50%;
+    justify-content: center;
+    display: block;
+    margin: 0 auto;
+}
+
+
+fieldset {	
+    display: flex;
+	flex-direction: column;
+	margin:0.5em;
+	padding:0.5em;
+    border: 0.15em solid #6fb76a;
+    /* box-shadow:  28px 28px 23px #d7d7d7,
+             -28px -28px 23px #e9e9e9; */
+}
+			
+
+section  {
+    padding:0.5em;
+}
+
+
+legend {
+    font-weight: 600;
+    text-align: center;
+}
+
+
+.check-item {
+    padding-left: 2em;
+    padding-right: 2em;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+form p {
+    padding-top: 1em;
+    padding-bottom: 0.15em;
+}
+
+.accordion {
+    justify-content: center;
+    width: 60%;
+    text-align: center;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+
+.accordion-button {
+    font-weight: 700;
+    margin: 0 !important;
+    /* display: flex !important; */
+}
+
+
+
+.accordion-item {
+    margin: 1em;
+}
+
+
+.accordion-body p {
+    font-size: 1em;
+}
+
+
+
+
+.round img {
+    border-radius: 50px;
+    display: block;
+    margin: 0 auto;
+    width: 40%;
+    max-width: 50%;
+    height: auto;
+    padding: 1em;
+    padding-bottom: 1.5em;
+}
+
+ 
+.card-columns {
+    column-gap: 0.5rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+} 
+
+
+.card-columns .card {
+    width: 100%;
+    margin: 0 0 1.5rem;
+} 
+
+
+.backTop {
+    padding-top: 4.5em;
+}
+
+@media (max-width: 768px) {
+    /* html, body {
+        overflow-x: hidden;
+    } */
+    
+
+    .navBar ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    
+    .navBar ul li a {
+        padding: 12px 16px;
+        font-size: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+    
+
+    .card {
+        max-width: 90%;
+        margin: 0 auto 1.5rem auto;
+        margin-top: 2em;
+        margin-bottom: 4.5em;
+    } 
+    
+
+    .card img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+
+    header {
+        font-size: 2rem;
+        padding: 0.5em;
+    }
+    
+
+    h1 {
+        font-size: 1.5rem;
+        padding: 0.25em;
+    }
+    
+
+    p {
+        font-size: 1.25rem;
+        /* padding: 0 1em; */
+    }
+    
+
+    .top {
+        margin-bottom: 10px;
+    }
+
+    
+    /* footer {
+        padding-top: 0.5em;
+    } */
+
+
+    form {		
+	    width:95%;
+	    margin:1em auto;
+    }
+
+
+    .alert {
+        max-width: 70%;
+        padding: 0.1em;
+    }
+
+
+    .carousel {
+        max-width: 85%;
+    }
+
+
+    /* .logo {
+        padding-bottom: 0.75em;
+    } */
+
+
+    .accordion {
+        width: 95%;
+        max-width: 95%;
+    }
+
+
+    img {
+        width: 80%;
+        max-width: 80%;
+        height: auto;
+        display: block;
+
+    }
+
+
+    .round {
+        width: 100%;
+        border-radius: 15px;
+        overflow: hidden;
+        padding: 0.5em;
+        padding-bottom: 1em;
+        margin: 0 auto;
+    }
+
+    .round img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+}
+
+
+
+
+
+
+
