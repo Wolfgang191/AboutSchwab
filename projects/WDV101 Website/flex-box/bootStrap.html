@@ -1,0 +1,131 @@
+
+
+
+<!DOCTYPE html>       
+
+<html lang="en-US">   
+
+<head>
+
+      <meta charset="utf-8">
+
+      <meta name="author" content="Zach Schwab">  
+      <meta name="description" content="Boot strap page">  
+
+      <title>Boot-Strap</title>   
+
+          <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+      <link rel="stylesheet" href="styles2.css">
+
+</head>
+
+
+
+
+<body class="bg-light">
+    <div class="container">
+        
+        <header class="bg-dark text-white text-center p-4 mb-4 rounded">
+            <h1>Comic Books</h1>
+        </header>
+
+
+        
+
+        <!-- <nav class="navbar-dark bg-dark">
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="comics.html">Publishers</a>
+                </li>
+            </ul>          
+        </nav> -->
+
+        <div class="row">
+            <div class="col-md-4">
+
+            <div class="card h-100 shadow">
+                <h2 class="text-primary">Comics near you!</h2>
+
+                <p>Use this site to locate comic shops <a href="https://www.dc.com/blog/2021/10/14/dc-comic-shop-locator">DC</a>. </p>
+
+                <img class="img-fluid" alt="Responsive image" src="images\A_large_blank_world_map_with_oceans_marked_in_blue.png">
+            </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+            <div>
+                <h2 class="text-success">Comics online</h2>
+
+                <p>Some simple online options are <a href="https://www.amazon.com">Amazon</a> & <a href="https://www.barnesandnoble.com">Barnes & Noble</a>. </p>
+            </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+            <div class="card h-100 shadow">
+                <h2 class="text-primary" >Library</h2>
+
+                <p>A great alternative to buying books is going to your local library, or reading online.</p>
+
+                <img class="img-fluid" alt="Responsive image" src="images\pitts-theology-library_001.webp">
+            </div>
+
+            </div>
+
+        </div>
+
+        <div id="comicCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#comicCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#comicCarousel" data-bs-slide-to="1"></button>
+        <!-- <button type="button" data-bs-target="#comicCarousel" data-bs-slide-to="2"></button> -->
+    </div>
+
+    <div class="carousel-inner rounded">
+
+        <div class="carousel-item active">
+            <img src="images/A_large_blank_world_map_with_oceans_marked_in_blue.png" class="d-block w-100" alt="Comic Map">
+        </div>
+
+        <div class="carousel-item">
+            <img src="images/pitts-theology-library_001.webp" class="d-block w-100" alt="Library">
+        </div>
+<!-- 
+        <div class="carousel-item">
+            <img src="images/A_large_blank_world_map_with_oceans_marked_in_blue.png" class="d-block w-100" alt="Comic Books">
+        </div> -->
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#comicCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#comicCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+
+</div>
+
+
+        <footer class="bg-dark text-white text-center p-3 mt-4 rounded">
+            <p>Copyright 2026. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

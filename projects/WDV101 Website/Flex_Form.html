@@ -1,0 +1,95 @@
+
+
+
+
+<!DOCTYPE html>
+<!-- saved from url=(0123)https://dmacc.blackboard.com/bbcswebdav/pid-7797087-dt-content-rid-106343242_1/courses/202302_H_WDV101_23973/form_flex.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Flex Form</title>
+
+<link rel="stylesheet" href="flex.css">
+
+</head>
+
+<body>
+
+<div>
+  <section>
+	<h1>WDV101 Intro HTML and CSS</h1>
+	<h2>Unit-4 Layout</h2>
+	<h3>CSS Flexbox</h3>
+	<ol>
+	  <li>Works on one direction</li>
+	  <li>Current layout technique</li>
+	  <li>Use Flex Containers</li>
+	  <li>Which contain Flex Items</li>
+	</ol>
+  </section>
+	
+  <section>
+
+    <form method="post" action="Flex_Form.html">
+
+	<h2>Contact Us!</h2>
+	<p>Send us a message. We would love to hear from you!</p>
+
+	<div class="text">
+	   <label for="firstName">First Name: </label>
+	   <input type="text" name="firstName" id="firstName" placeholder="first name">
+	</div>
+
+	<div class="text">
+	   <label for="lastName">Last Name: </label>
+	   <input type="text" name="lastName" id="lastName" placeholder="last name">
+	</div>
+
+	<div class="text">
+	   <label for="emailAddress">Email Address: </label>
+	   <input type="text" name="emailAddress" id="emailAddress" placeholder="name@anywhere.com">
+	</div>
+			
+	<div class="text">	
+	  <label for="selectTopic">Topic: </label>
+	  <select name="selectTopic" id="selectTopic">
+		<option value="WDV">Web Development Services</option>
+		<option value="GRD">Graphic Design</option>
+		<option value="DMK">Digital Marketing</option>
+	  </select>
+	</div>
+
+	<div>
+	  <div class="option">
+	  	<input type="radio" name="majorCode" id="photoButton" value="PHO" checked="">
+		<label for="photoButton">Photography</label>
+	  </div>
+			
+	  <div class="option">
+		<input type="radio" name="majorCode" id="grdButton" value="GRD">
+		<label for="grdButton">Graphic Design</label>
+	  </div>
+					
+	  <div class="option">
+		<input type="radio" name="majorCode" id="wdvButton" value="WDV">
+		<label for="wdvButton">Web Development</label>
+					</div>
+	  </div><!--close form box row-->
+				
+	  <div class="textF">
+		<label for="inputMessage">Message: </label>
+		<br>
+		<textarea name="inputMessage" id="inputMessage" placeholder="Type your message here."></textarea>
+	  </div>
+
+	  <div>  
+		<input type="submit" value="Submit">
+		<input type="reset" value="Reset">
+ 	  </div>
+	</div>
+
+      </form><!--close flex container div-->
+    </section>
+
+  </div>
+</body>
+</html>

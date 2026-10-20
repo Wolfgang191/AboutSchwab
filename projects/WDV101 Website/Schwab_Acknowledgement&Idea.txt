@@ -1,0 +1,1 @@
+I will be working on a Wishlist style database for physical media focusing on comics. I will also be adding the ability to have a collection database. There will be a to be read, read, and unread section. I plan to have most of this data accessible without infinite scrolling. I do have a start to this that I recently made.

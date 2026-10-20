@@ -1,0 +1,103 @@
+
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+}
+
+header, nav, footer {
+  background: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+
+p {
+  text-align: center;
+}
+
+
+.main {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  /* text-align: center; */
+}
+
+
+main div {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+
+.navBar a {
+    color: white;
+}
+
+
+.navBar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+    /* border-radius: 2rem; */
+
+    display: flex;
+    justify-content: center; 
+}
+
+.navBar ul li a {
+    display: flex;
+    flex-wrap: wrap;
+    color: white;
+    text-align: center;
+    padding: 24px 32px;  
+    font-size: 1.3rem;   
+    text-decoration: none;
+}
+
+.navBar ul li a:hover {
+    background-color: #111111;
+    border-radius: 2rem;
+}
+
+
+img {
+  width: 300px;     
+  height: auto;   
+  border: 2px solid #333;  
+  border-radius: 8px;   
+  /* justify-content: center; */
+}
+
+
+.center {
+  width: 300px;     
+  height: auto;   
+  border: 2px solid #333;  
+  border-radius: 8px;   
+  margin: 0 auto; 
+  display: block;       
+}
+
+
+ul li {
+  list-style-type: none;
+  text-align: center;
+}
+
+
+img, .center {
+  margin-bottom: 2rem; /* adds space below the image */
+}
+
+
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+  }
+}

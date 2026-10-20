@@ -1,0 +1,152 @@
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+   <title>Skillset Form</title>
+
+   <style>
+    * {
+	box-sizing: border-box;
+	margin:0;
+	padding:0;
+    }
+	
+    body  {
+	font-family: "Helvetica", Ariel, sans-serif;
+	font-size:125%;
+	color: #333;
+	background-color:#9bd;
+    }
+		
+    form  {
+	background-color: lightgray;
+	width: 800px;
+	margin: 10px auto;
+	padding: 20px;
+	border: 2px solid black;
+	border-radius: 15px;
+    }
+
+    legend  {
+	width: 100%;
+	border-bottom: 1px dotted purple;
+	padding-bottom: 5px;
+	margin-bottom: 15px;
+	font-size:1.3em;
+     }
+		
+    fieldset  {
+
+	margin: 20px;
+	border:hidden;
+    }
+				
+    fieldset div  {
+	margin: 5px 0;
+	align-items: center;
+    }
+			
+    input, select  {
+	font-size: 1.1em;
+	padding: 2px 5px 4px;
+	border-radius: 5px;
+	margin-top:5px;
+    }
+						
+    label  {
+	width: 10em;
+	text-align: right;
+	padding-right: 0.5em;
+    }
+
+    input[type="checkbox"], input[type="radio"] {
+     	width: auto;
+     	margin-left: 20px;
+    }
+		
+    input[type=submit], input[type=reset] {
+	color:white;
+	background-color: black;
+	padding: 6px;
+	margin-right: 30px;
+     }
+								
+     input[type=submit]  {
+	margin-left: 255px;
+     }
+	
+  </style>
+
+</head>
+
+<body>
+
+	<form id="contact_form" method="post" action="">
+	<h2>Information about My Education and Skills</h2>
+	  <fieldset>
+	      	<legend>My Personal Information</legend> 
+		<div>
+		  <label for="firstname">First Name</label>
+		  <input id="firstname" name="firstname" type="text">
+		</div>
+		
+		<div>
+		  <label for="lastname">Last Name</label>
+		  <input id="lastname" name="lastname" type="text">
+		</div>
+	   </fieldset>
+		
+           <fieldset>
+             	<legend>My Education and Skills</legend>
+		<div>
+                  <label>My Major is: </label><br>
+			<input type="radio" id="cis" name="major" value="cis">
+			<label for="cis">CIS/BIS</label><br>
+			<input type="radio" id="cyber" name="major" value="cyber">
+			<label for="cis">CyberSecurity</label><br>
+			<input type="radio" id="marketing" name="major" value="marketing">
+			<label for="marketing">Digital Marketing</label>
+			<input type="radio" id="design" name="major" value="design">
+			<label for="marketing">Graphic Design</label>
+			<input type="radio" id="web" name="major" value="web">
+			<label for="web">Web Development</label>
+		</div>
+    		<div>
+      		  <label>My Experience Level</label>
+     		  <select id="experience" name="experience" style="font-size:0.9em;">
+       			<option value="1year">1 year or less</option>
+        		<option value="2years">2 years</option>
+        		<option value="3_4years">3 - 4 years</option>
+       			<option value="5+">5 years or more</option>
+      		  </select>
+    		</div>
+    		
+		<div>
+                  <label>My Skills are:</label><br>
+			<input type="checkbox" id="css" name="skill1" value="css">
+			<label for="css">CSS</label><br>
+			<input type="checkbox" id="front" name="skill2" value="front">
+			<label for="front">Front End Design</label><br>
+			<input type="checkbox" id="HTML" name="skill3" value="HTML">
+			<label for="HTML">HTML</label>
+			<input type="checkbox" id="js" name="skill4" value="js">
+			<label for="js">JavaScript</label>
+			<input type="checkbox" id="object" name="skill5" value="object">
+			<label for="object">Object Oriented Programming</label>
+		</div>
+		</fieldset>
+
+		<fieldset>
+		  <div>
+			<input type="submit" id="button" name="button" value="Submit">
+			<input type="reset" id="button" name="button" value="Reset">
+		  </div>
+        	</fieldset>
+      </fieldset>
+   </form>
+</body>
+</html>
