@@ -1,0 +1,146 @@
+
+
+/***************************************************************
+* Name         : StudentInheritance
+* Author       : Zach Schwab
+* Created      : 11/25/2025
+* Course       : CIS 125
+* Version      : 1.0
+* OS           : Windows 11
+* IDE          : Visual Studio Code
+* Copyright    : This is my own original work based on
+*                      specifications issued by our instructor
+* Description  : This program demonstrates inheritance. It also demonstrates imput validation, GUI, proper encapsulation, and proper naming conventions.
+*                      Input : Hourly wage and hours worked
+*                      Output: Student and StudentWorker information
+* Academic Honesty: I attest that this is my original work.
+* I have not used unauthorized source code, either modified or
+* unmodified. I have not given other fellow student(s) access
+* to my program.        
+***************************************************************/
+
+
+
+
+namespace StudentInheritance
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+
+            string fname = "Ren", lname = "Stevens";
+            int id = 22;
+            DateTime dob = new DateTime(1984, 3, 20);
+
+            string fname2 = "Kim", lname2 = "Possible";
+            int id2 = 32;
+            DateTime dob2 = new DateTime(2002, 6, 7);
+            //decimal pay = 10.15M;
+
+            decimal pay = 0; 
+            bool validPay = false;
+
+
+
+
+
+
+            StudentWorker kim = null; // initialize outside loop
+
+
+            // Loop to ensure valid pay and hours worked input
+            do
+            {
+
+                while (!validPay)
+                {
+                    Console.Write("Enter hourly wage (7.25 – 14.75): ");
+                    string payInput = Console.ReadLine();
+
+                    try
+                    {
+                        pay = Convert.ToDecimal(payInput);
+
+                        if (pay < 7.25M || pay > 14.75M)
+                        {
+                            Console.WriteLine("Wage must be between 7.25 and 14.75");
+                        }
+                        else
+                        {
+                            validPay = true; // valid input, exit loop
+                        }
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Invalid input. Enter a numeric value.");
+                    }
+                    catch (OverflowException)
+                    {
+                        Console.WriteLine("Number too large.");
+                    }
+                }
+
+
+
+
+                decimal hoursWorked = 0;
+                bool validInput = false;
+
+                while (!validInput) // loop until valid input
+                {
+                    Console.Write("Enter hours worked (1-15): ");
+                    string hoursIn = Console.ReadLine();
+
+                    try
+                    {
+                        hoursWorked = Convert.ToDecimal(hoursIn);
+
+                        if (hoursWorked < 1 || hoursWorked > 15)
+                        {
+                            Console.WriteLine("Hours must be between 1 and 15");
+                        }
+                        else
+                        {
+                            validInput = true;
+                        }
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Invalid, enter a numeric value");
+                    }
+                    catch (OverflowException)
+                    {
+                        Console.WriteLine("Number is too large");
+                    }
+                } // end try catch
+
+
+
+                kim = new StudentWorker(pay, hoursWorked, fname2, lname2, dob2, id2, "cs", 2);
+
+                if (kim.WeeklyPay == 0) // check if weekly pay is 0
+                {
+                    Console.WriteLine("Error calculating weekly pay, please try again");
+                }
+
+            } while (kim.WeeklyPay == 0) ; // end do while kim weekly pay is 0
+
+
+            // Output StudentWorker information
+            Console.WriteLine(kim.ToString());
+            Console.WriteLine($"Weekly Pay: {kim.CalculateWeeklyPay():C}"); // added to check weekly pay calculation method worked
+
+
+
+            // Create Student object to show more basic inheritance / functionality
+            Student ren = new Student(fname, lname, dob, id, "cs", 2);
+            Console.WriteLine(ren.ToString());
+
+
+
+            //Console.WriteLine("Hello, World!");
+        }
+    }
+}
